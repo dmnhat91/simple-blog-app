@@ -1,19 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+// import React, {useState, useEffect} from 'react';
+import React from 'react';
+// import axios from 'axios';
 
-const CommentList = ({postId}) => {
+// const CommentList = ({postId}) => {
+const CommentList = ({comments}) => {
     //API will return an array of comments, hence we know we are working with array and set default value as empty array
-    const [comments, setComments] = useState([]);
+    // const [comments, setComments] = useState([]);
 
-    const fetchData = async () => {
-        const res = await axios.get(`http://localhost:4001/posts/${postId}/comments`);
+    // const fetchData = async () => {
+    //     const res = await axios.get(`http://localhost:4001/posts/${postId}/comments`);
 
-        setComments(res.data);
-    };
+    //     setComments(res.data);
+    // };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     const renderedComments = comments.map(comment => {
         return <li key={comment.id}>{comment.content}</li>;
