@@ -22,7 +22,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     //if result is undefined (aka. the post id does not have any comments), then give the empty array
     const comments = commentsByPostId[req.params.id] || [];
 
-    comments.push({id: commentId, content});
+    comments.push({id: commentId, content, status: 'pending'});
 
     //assign comments array back to commentsByPostId
     commentsByPostId[req.params.id] = comments;
@@ -32,15 +32,43 @@ app.post('/posts/:id/comments', async (req, res) => {
         data: {
             id: commentId,
             content,
-            postId: req.params.id
+            postId: req.params.id,
+            status: 'pending'
         }
     });
 
     res.status(201).send(comments);
 });
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
     console.log('Event Received:', req.body.type);
+
+    const {type, data} = req.body;
+
+    if (type === 'CommentModerated'){
+        //get postId, id, status from data
+        const {postId, id, status, content} = data;
+
+        const comments = commentsByPostId[postId];
+
+        //find the comment that has the given id (aka. the id from the event)
+        const comment = comments.find(comment => {
+            return comment.id === id;
+        });
+
+        //update the comment status - don't need to insert back to the comments array as it is pointing to the same object
+        comment.status = status;
+
+        await axios.post('http://localhost:4005/events', {
+            type: 'CommentUpdated',
+            data: {
+                id,
+                status,
+                postId,
+                content
+            }
+        });
+    }
 
     res.send({});
 });
