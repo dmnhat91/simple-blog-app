@@ -18,3 +18,5 @@ Node.js v14
     * Port 4003
 5. Event bus: 
     * Port 4005
+
+## Kubernetes instruction
