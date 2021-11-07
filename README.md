@@ -18,6 +18,9 @@ Node.js v14
 5. Event bus: 
     * Port 4005
 
+## Docker commands instruction
+1. `docker build -t [image_name]:[tag] .`: build up docker image in current folder. You have to go into the folder containing Dockerfile to create the image.
+
 ## Kubernetes commands instruction
 1. `kubectl apply -f posts-depl.yaml`: run k8s and create pods.
 2. `kubectl get deployments`: list all running deployments.
