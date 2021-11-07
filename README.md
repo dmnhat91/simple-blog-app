@@ -21,18 +21,27 @@ Node.js v14
 ## Docker commands instruction
 1. `docker build -t [image_name]:[tag] .`: build up docker image in current folder. You have to go into the folder containing Dockerfile to create the image.
 
-## Kubernetes commands instruction
-1. `kubectl apply -f posts-depl.yaml`: run k8s and create pods.
-2. `kubectl get deployments`: list all running deployments.
-3. `kubectl get pods`: list all running pods.
-4. `kubectl describe deployment [depl name]`: print out details about a specific deployment.
-    + In our case, it is `kubectl describe deployment posts-depl`
-5. `kubectl delete deployment [depl name]`: delete a deployment
+## Kubernetes
+### Kubernetes commands instruction
+1. `kubectl apply -f [config_file]`: run k8s and create pods. In our case:
+    + `kubectl apply -f posts-depl.yaml`
+    + `kubectl apply -f posts-srv.yaml`
+2. `kubectl get [object_name]`: list all running objects.
+    + `kubectl get deployments`: list all running deployments.
+    + `kubectl get pods`: list all running pods.
+    + `kubectl get services`: list all running services.
+3. `kubectl describe [obj_name] [name]`: print out details about a specific object.
+    + `kubectl describe deployment posts-depl`
+    + `kubectl describe service posts-srv`
+4. `kubectl delete deployment [depl name]`: delete a deployment
     + In our case, it is `kubectl delete deployment posts-depl`
-6. `kubectl delete pod [pod name]`: delete a pod
-7. `kubectl rollout restart deployment [depl name]`: to tell k8s to use the latest version of image on docker hub
+5. `kubectl delete pod [pod name]`: delete a pod
+6. `kubectl rollout restart deployment [depl name]`: to tell k8s to use the latest version of image on docker hub
     + In our case, it is `kubectl rollout restart deployment posts-depl`
-8. `kubectl logs [pod name]`: print out the logs of the pod
+7. `kubectl logs [pod name]`: print out the logs of the pod
+
+### Accessing via web browser
+The service can be accessed via **localhost:3xxxx/posts**, where 3xxxxx is the NodePort of the Service object.
 
 ## Method to update Image used by a deployment
 * Step 1: The deployment must be using the 'latest' tag in the pod spec section of the .yaml file
