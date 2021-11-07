@@ -1,13 +1,13 @@
-apiVersion: apps/v1
+apiVersion: apps/v1       #specify the "bucket" of objects that contain Deployment object
 kind: Deployment
 metadata:
-  name: posts-depl
-spec:
-  replicas: 1
+  name: posts-depl        #name of deployment
+spec:                     #specify how this deployment object should behave
+  replicas: 1             #number of pod to create for some particular image
   selector:
     matchLabels:
-      app: posts
-  template:
+      app: posts          #find all the pods with the label "app: posts", the label name is not important, you can even use "abc: xyz" 
+  template:               #the template is where you specify the exact configuration of a pod for deployment obj to create
     metadata:
       labels:
         app: posts
