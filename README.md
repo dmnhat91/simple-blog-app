@@ -24,8 +24,11 @@ Node.js v14
 ## Kubernetes
 ### Kubernetes commands instruction
 1. `kubectl apply -f [config_file]`: run k8s and create pods. In our case:
-    + `kubectl apply -f posts-depl.yaml`
-    + `kubectl apply -f posts-srv.yaml`
+    * Posts
+        + `kubectl apply -f posts-depl.yaml`
+        + `kubectl apply -f posts-srv.yaml`
+    * Event-bus
+        + `kubectl apply -f event-bus-depl.yaml`
 2. `kubectl get [object_name]`: list all running objects.
     + `kubectl get deployments`: list all running deployments.
     + `kubectl get pods`: list all running pods.
@@ -34,7 +37,8 @@ Node.js v14
     + `kubectl describe deployment posts-depl`
     + `kubectl describe service posts-srv`
 4. `kubectl delete deployment [depl name]`: delete a deployment
-    + In our case, it is `kubectl delete deployment posts-depl`
+    + `kubectl delete deployment posts-depl`
+    + `kubectl delete deployment event-bus-depl`
 5. `kubectl delete pod [pod name]`: delete a pod
 6. `kubectl rollout restart deployment [depl name]`: to tell k8s to use the latest version of image on docker hub
     + In our case, it is `kubectl rollout restart deployment posts-depl`
@@ -43,9 +47,17 @@ Node.js v14
 ### Accessing via web browser
 The service can be accessed via **localhost:3xxxx/posts**, where 3xxxxx is the NodePort of the Service object.
 
-## Method to update Image used by a deployment
+## Practical steps
+### Method to update Image used by a deployment
 * Step 1: The deployment must be using the 'latest' tag in the pod spec section of the .yaml file
 * Step 2: Make an update to your code
 * Step 3: Build the image
 * Step 4: Push the image to docker hub (using command `docker push [image_name]`)
 * Step 5: Run the command `kubectl rollout restart deployment [depl name]`
+
+### Steps to create connection between services
+* Step 1: Build an image for the Event Bus
+* Step 2: Push the image to Docker Hub
+* Step 3: Create a deployment for Event Bus
+* Step 4: Create a Cluster IP service for Event Bus and Posts
+* Step 5: Wire it all up!
