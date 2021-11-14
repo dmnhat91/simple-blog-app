@@ -65,3 +65,11 @@ The service can be accessed via **localhost:3xxxx/posts**, where 3xxxxx is the N
 * Step 3: Create a deployment for Event Bus
 * Step 4: Create a Cluster IP service for Event Bus and Posts
 * Step 5: Wire it all up!
+
+## Ingress
+### Host File Tweak
+You need to trick Ingress to think the domain configured in `ingress-srv.yaml` is localhost.
+For MacOS/Linux:
+    * Add `127.0.0.1 posts.com` to `/etc/hosts`
+For Windows:
+    * Add `127.0.0.1 posts.com` to `C:\Windows\System32\Drivers\etc\hosts`
