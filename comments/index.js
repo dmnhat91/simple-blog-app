@@ -27,7 +27,8 @@ app.post('/posts/:id/comments', async (req, res) => {
     //assign comments array back to commentsByPostId
     commentsByPostId[req.params.id] = comments;
 
-    await axios.post('http://localhost:4005/events', {
+    // await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-srv:4005/events', {
         type: 'CommentCreated',
         data: {
             id: commentId,
@@ -59,7 +60,8 @@ app.post('/events', async (req, res) => {
         //update the comment status - don't need to insert back to the comments array as it is pointing to the same object
         comment.status = status;
 
-        await axios.post('http://localhost:4005/events', {
+        // await axios.post('http://localhost:4005/events', {
+        await axios.post('http://event-bus-srv:4005/events', {
             type: 'CommentUpdated',
             data: {
                 id,

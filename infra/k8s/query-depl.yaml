@@ -1,0 +1,30 @@
+apiVersion: apps/v1       #specify the "bucket" of objects that contain Deployment object
+kind: Deployment
+metadata:
+  name: query-depl        #name of deployment
+spec:                     #specify how this deployment object should behave
+  replicas: 1             #number of pod to create for some particular image
+  selector:
+    matchLabels:
+      app: query          #find all the pods with the label "app: query", the label name is not important, you can even use "abc: xyz" 
+  template:               #the template is where you specify the exact configuration of a pod for deployment obj to create
+    metadata:
+      labels:
+        app: query
+    spec:
+      containers:
+        - name: query
+          image: dmnhat91/query
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: query-srv
+spec:
+  selector:
+    app: query
+  ports:
+    - name: query
+      protocol: TCP
+      port: 4002
+      targetPort: 4002

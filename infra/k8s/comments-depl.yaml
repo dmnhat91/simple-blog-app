@@ -1,0 +1,30 @@
+apiVersion: apps/v1       #specify the "bucket" of objects that contain Deployment object
+kind: Deployment
+metadata:
+  name: comments-depl     #name of deployment
+spec:                     #specify how this deployment object should behave
+  replicas: 1             #number of pod to create for some particular image
+  selector:
+    matchLabels:
+      app: comments       #find all the pods with the label "app: comments", the label name is not important, you can even use "abc: xyz" 
+  template:               #the template is where you specify the exact configuration of a pod for deployment obj to create
+    metadata:
+      labels:
+        app: comments
+    spec:
+      containers:
+        - name: comments
+          image: dmnhat91/comments
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comments-srv
+spec:
+  selector:
+    app: comments
+  ports:
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

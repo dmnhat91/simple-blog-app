@@ -1,0 +1,30 @@
+apiVersion: apps/v1       #specify the "bucket" of objects that contain Deployment object
+kind: Deployment
+metadata:
+  name: moderation-depl   #name of deployment
+spec:                     #specify how this deployment object should behave
+  replicas: 1             #number of pod to create for some particular image
+  selector:
+    matchLabels:
+      app: moderation     #find all the pods with the label "app: moderation", the label name is not important, you can even use "abc: xyz" 
+  template:               #the template is where you specify the exact configuration of a pod for deployment obj to create
+    metadata:
+      labels:
+        app: moderation
+    spec:
+      containers:
+        - name: moderation
+          image: dmnhat91/moderation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: moderation-srv
+spec:
+  selector:
+    app: moderation
+  ports:
+    - name: moderation
+      protocol: TCP
+      port: 4003
+      targetPort: 4003

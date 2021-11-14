@@ -29,6 +29,8 @@ Node.js v14
         + `kubectl apply -f posts-srv.yaml`
     * Event-bus
         + `kubectl apply -f event-bus-depl.yaml`
+    * To apply all at one go:
+        + `kubectl apply -f .`
 2. `kubectl get [object_name]`: list all running objects.
     + `kubectl get deployments`: list all running deployments.
     + `kubectl get pods`: list all running pods.
@@ -36,12 +38,14 @@ Node.js v14
 3. `kubectl describe [obj_name] [name]`: print out details about a specific object.
     + `kubectl describe deployment posts-depl`
     + `kubectl describe service posts-srv`
+    + `kubectl describe pod comments-depl-6f4f99954f-7l47x` (this is just an example, your pod name can be diffent)
 4. `kubectl delete deployment [depl name]`: delete a deployment
     + `kubectl delete deployment posts-depl`
     + `kubectl delete deployment event-bus-depl`
 5. `kubectl delete pod [pod name]`: delete a pod
 6. `kubectl rollout restart deployment [depl name]`: to tell k8s to use the latest version of image on docker hub
-    + In our case, it is `kubectl rollout restart deployment posts-depl`
+    + `kubectl rollout restart deployment posts-depl`
+    + `kubectl rollout restart deployment event-bus-depl`
 7. `kubectl logs [pod name]`: print out the logs of the pod
 
 ### Accessing via web browser
