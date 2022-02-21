@@ -18,6 +18,12 @@ Node.js v14
 5. Event bus: 
     * Port 4005
 
+### Flow diagram
+#### General flow
+![General Flow](images/GeneralFlow.png)
+#### API Handlers
+![API Handlers](images/APIHandlers.png)
+
 ## Docker commands instruction
 1. `docker build -t [image_name]:[tag] .`: build up docker image in current folder. You have to go into the folder containing Dockerfile to create the image.
 
