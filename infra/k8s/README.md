@@ -1,6 +1,20 @@
 # Basic knowledge
 ## Deployment
-![Deployment](../images/Deployment.png)
+A deployment is a Kubernetes object that is intended to manage a set of pods.
+![Deployment](../../images/Deployment.png)
+If somehow, there is a pod that crashes, the deployment auto creates a new pod again.
+## Networking with services
+A Service is another kind of object in Kubernetes.
+![Service](../../images/Service.png)
+There are different types of Service in k8.
+![Service Types](../../images/ServiceTypes.png)
+## Load balancer
+![How Load Balancer works](../../images/LoadBalancer.png)
+The Load balancer receives request from React App and will reach to appropriate Cluster IP Service
+![How Load Balancer works 2](../../images/LoadBalancer2.png)
+## Ingress
+![Ingress Definition](../../images/Ingress.png)
+![How Ingress works](../../images/IngressMechanism.png)
 
 # Explanation of k8s configuration
 ## posts-srv.yaml
