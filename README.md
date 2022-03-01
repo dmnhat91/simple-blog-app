@@ -62,11 +62,13 @@ kubectl delete deployment comments-depl
 kubectl delete deployment moderation-depl
 kubectl delete deployment query-depl
 kubectl delete deployment event-bus-depl
+kubectl delete deployment client-depl
 kubectl delete service comments-srv
 kubectl delete service event-bus-srv
 kubectl delete service moderation-srv
 kubectl delete service posts-srv
 kubectl delete service query-srv
+kubectl delete service client-srv
 kubectl delete service posts-clusterip-srv
 ```
 
@@ -75,6 +77,9 @@ kubectl delete service posts-clusterip-srv
 The service can be accessed via **localhost:3xxxx/posts**, where 3xxxxx is the NodePort of the Service object.
 
 ## Practical steps
+### To build docker image (with good practice)
+Use `docker build -t [YOUR-DOCKER-ID]/[IMAGE-NAME] .`. Example: `docker build -t dmnhat91/client .` (this builds image client)
+
 ### Method to update Image used by a deployment
 * Step 1: The deployment must be using the 'latest' tag in the pod spec section of the .yaml file
 * Step 2: Make an update to your code

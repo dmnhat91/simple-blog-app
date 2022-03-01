@@ -15,6 +15,8 @@ The Load balancer receives request from React App and will reach to appropriate 
 ## Ingress
 ![Ingress Definition](../../images/Ingress.png)
 ![How Ingress works](../../images/IngressMechanism.png)
+## Full Overview
+![Full k8s Overview](../../images/K8sOverview.png)
 
 # Explanation of k8s configuration
 ## posts-srv.yaml

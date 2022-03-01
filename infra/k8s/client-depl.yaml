@@ -1,0 +1,30 @@
+apiVersion: apps/v1       #specify the "bucket" of objects that contain Deployment object
+kind: Deployment
+metadata:
+  name: client-depl     #name of deployment
+spec:                     #specify how this deployment object should behave
+  replicas: 1             #number of pod to create for some particular image
+  selector:
+    matchLabels:
+      app: client       #find all the pods with the label "app: client", the label name is not important, you can even use "abc: xyz" 
+  template:               #the template is where you specify the exact configuration of a pod for deployment obj to create
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: dmnhat91/client
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-srv
+spec:
+  selector:
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
