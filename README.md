@@ -55,6 +55,20 @@ Node.js v14
     + `kubectl rollout restart deployment event-bus-depl`
 7. `kubectl logs [pod name]`: print out the logs of the pod
 
+#### Full script to stop
+`kubectl delete deployment posts-depl`
+`kubectl delete deployment comments-depl`
+`kubectl delete deployment moderation-depl`
+`kubectl delete deployment query-depl`
+`kubectl delete deployment event-bus-depl`
+`kubectl delete service comments-srv`
+`kubectl delete service event-bus-srv`
+`kubectl delete service moderation-srv`
+`kubectl delete service posts-srv`
+`kubectl delete service query-srv`
+`kubectl delete service posts-clusterip-srv`
+
+
 ### Accessing via web browser
 The service can be accessed via **localhost:3xxxx/posts**, where 3xxxxx is the NodePort of the Service object.
 
