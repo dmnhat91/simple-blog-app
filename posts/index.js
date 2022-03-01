@@ -16,7 +16,8 @@ app.get('/posts', (req, res) => {
     res.send(posts); //whenever someone get post via GET request, send back all the posts
 });
 
-app.post('/posts', async (req, res) => {
+// app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
     const id = randomBytes(4).toString('hex'); //generate a hex id length 4 bytes
     const {title} = req.body;
 
