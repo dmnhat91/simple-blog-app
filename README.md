@@ -95,9 +95,34 @@ Use `docker build -t [YOUR-DOCKER-ID]/[IMAGE-NAME] .`. Example: `docker build -t
 * Step 5: Wire it all up!
 
 ## Ingress
+### Installation
+Follow: https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+
 ### Host File Tweak
 You need to trick Ingress to think the domain configured in `ingress-srv.yaml` is localhost.
 For MacOS/Linux:
     * Add `127.0.0.1 posts.com` to `/etc/hosts`
 For Windows:
     * Add `127.0.0.1 posts.com` to `C:\Windows\System32\Drivers\etc\hosts`
+
+
+## Skaffold
+### Usage
+![Skaffold Usage](images/Skaffold.png)
+
+You even don't need to run the above commands to create deployments and delete deployments. Skaffold does it for you.
+
+### Installation
+Follow: https://skaffold.dev/
+Or just run command: `brew install skaffold`
+
+### Config file
+Skaffold will consume skaffold.yaml file at the root of project.
+
+### Startup skaffold
+* Use command: `skaffold dev`
+* Use `Control + C` to stop
+
+
+### Note here
+With current config, when you makes changes to .JS file. Skaffold will throw the changed file to the pod. But there is actually a library "nodemon index.js" setup inside package.json to reload the newly changed files. Therefore, you can see the changes reflected. If not using any library like nodemon, it will not do anything good.
