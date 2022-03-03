@@ -3,9 +3,10 @@
 Node.js v14
 
 ## Simple guidelines
-* Use `npm init -y` to create package.json
+* Use `npm init -y` to create package.json.
 * Then `npm install axios express nodemon cors` to install appropriate packages. Note: some services do not need all of those packages.
-* Call `npm start` to start a service
+* Or if we already have **package.json**, then just locates the folder containing **package.json** and run `npm install`.
+* Call `npm start` to start a service.
 
 ## App description
 1. Posts service: 
