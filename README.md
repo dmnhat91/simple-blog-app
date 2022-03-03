@@ -105,6 +105,23 @@ For MacOS/Linux:
 For Windows:
     * Add `127.0.0.1 posts.com` to `C:\Windows\System32\Drivers\etc\hosts`
 
+### To debug Ingress
+Make sure you have deployed the correct controller for Docker Desktop:
+
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml`
+
+Then, you need to check the status of the load balancer (allow a few minutes to pass before testing):
+
+`kubectl get services -n ingress-nginx`
+
+It should return:
+
+NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+
+ingress-nginx-controller LoadBalancer 10.98.198.86 localhost 80:31932/TCP,443:32072/TCP 19m
+
+ingress-nginx-controller-admission ClusterIP 10.108.118.196 <none> 443/TCP 19m
+
 
 ## Skaffold
 ### Usage
