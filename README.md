@@ -101,9 +101,9 @@ Follow: https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
 ### Host File Tweak
 You need to trick Ingress to think the domain configured in `ingress-srv.yaml` is localhost.
 For MacOS/Linux:
-    * Add `127.0.0.1 posts.com` to `/etc/hosts`
+* Add `127.0.0.1 posts.com` to `/etc/hosts`
 For Windows:
-    * Add `127.0.0.1 posts.com` to `C:\Windows\System32\Drivers\etc\hosts`
+* Add `127.0.0.1 posts.com` to `C:\Windows\System32\Drivers\etc\hosts`
 
 ### To debug Ingress
 Make sure you have deployed the correct controller for Docker Desktop:
@@ -121,6 +121,10 @@ NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
 ingress-nginx-controller LoadBalancer 10.98.198.86 localhost 80:31932/TCP,443:32072/TCP 19m
 
 ingress-nginx-controller-admission ClusterIP 10.108.118.196 <none> 443/TCP 19m
+
+To check if ingress is running on port 80:
+
+`sudo lsof -i tcp:80`
 
 
 ## Skaffold
