@@ -148,3 +148,7 @@ Skaffold will consume skaffold.yaml file at the root of project.
 
 ### Note here
 With current config, when you makes changes to .JS file. Skaffold will throw the changed file to the pod. But there is actually a library "nodemon index.js" setup inside package.json to reload the newly changed files. Therefore, you can see the changes reflected. If not using any library like nodemon, it will not do anything good.
+
+One more note:<br/>
+Inside a `Service` k8s object, there is a property `ports` consisting of `port` and `targetPort`. The **targetPort** is the one specifying the actual port our application is running at. For example, if you run a Java Spring Boot program
+(its default port is 8080). Your targetPort should be 8080.
